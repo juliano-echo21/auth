@@ -22,10 +22,15 @@ import Route from "@ioc:Adonis/Core/Route";
 import UserPermission from "App/Middleware/UserPermission";
 
 Route.group(() => {
+  // el usuario basico solo puede regista
   Route.post("/register", "AuthController.resgister");
   Route.post("/login", "AuthController.login");
 
   Route.group(() => {
+    Route.get("/users", "UsersController.show");
+    Route.put("/updateUser/:id", "UsersController.update");
+    Route.get("/userById/:id", "UsersController.index");
+
     Route.group(() => {
       Route.get("/books", "BooksController.index");
       Route.put("/books/update/:id", "BooksController.update");
